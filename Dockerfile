@@ -28,6 +28,9 @@ RUN gem install jekyll -v 2.5.3
 
 # Additional gems
 RUN gem install jekyll-watch
+RUN gem install jekyll-sitemap
+RUN gem install jekyll-feed
+RUN gem install jekyll-gist
 
 # Expose the default port from jekyll
 EXPOSE 4000
