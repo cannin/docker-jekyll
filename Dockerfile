@@ -1,8 +1,8 @@
-FROM ubuntu:14.04.3
+FROM ubuntu:16.04
 
 RUN apt-get -y update && apt-get -y upgrade
-RUN apt-get -y install links nano
-    
+RUN apt-get -y install links nano htop git wget
+
 # Install Ruby
 # The -dev version of Ruby is necessary to avoid
 # "cannot load such file -- mkmf (LoadError)" error when installing
@@ -23,14 +23,18 @@ RUN ln -s /usr/bin/python2.7 /usr/bin/python2
 # jekyll. See https://github.com/jekyll/jekyll/issues/2327
 RUN gem install execjs therubyracer
 
+# Install dependencies for Jekyll packages
+RUN apt-get install zlib1g-dev
+
 # Install the Jekyll version 2.5.3
-RUN gem install jekyll -v 2.5.3
+#RUN gem install jekyll -v 2.5.3
+RUN gem install github-pages
 
 # Additional gems
-RUN gem install jekyll-watch
-RUN gem install jekyll-sitemap
-RUN gem install jekyll-feed
-RUN gem install jekyll-gist
+#RUN gem install jekyll-watch
+#RUN gem install jekyll-sitemap
+#RUN gem install jekyll-feed
+#RUN gem install jekyll-gist
 
 # Expose the default port from jekyll
 EXPOSE 4000
